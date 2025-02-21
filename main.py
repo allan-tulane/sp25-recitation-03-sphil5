@@ -50,7 +50,23 @@ def quadratic_multiply(x, y):
 
 def _quadratic_multiply(x, y):
     ### TODO
-    pass
+    ## obtains the yvec and xvec binary vectors of x and y 
+    x = x.binary2int(x.binary_vec)
+    y = y.binary2int(y.binary_vec)
+
+    result = BinaryNumber(0)
+
+    ## loop through the bits of x 
+    for i in range(len(x.binary_vec) - 1, -1, -1):
+        ## if the bit is 1, we are going to shift y by i
+        if x.binary_vec[i] == 1:
+            ## result = result + y
+            ## y = y + y
+            yshift = bit_shift(y, len(x.binary_vec) - 1 - i)
+            ## add the shifted y to the result 
+            result = result + yshift 
+            
+    return result
     ###
 
 
